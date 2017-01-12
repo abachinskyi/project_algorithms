@@ -80,7 +80,7 @@ class Shop:
 '''
 A bit stupid generation of list with 10 shops, in the shops list instances of class are stored
 '''
-
+'''
 shops=[]
 shops.append(Shop(25))
 shops.append(Shop(25))
@@ -98,7 +98,7 @@ shops.append(Shop(25))
 for i in shops:
     i.remove_redundant(user_products)
     i.average()
-
+'''
 
 #####################################################################################################
 
@@ -264,7 +264,6 @@ def minimum_shops (shops,user_products, user_x, user_y):
 The most interesting part is here. Here we try to find optimal solution for user, where he can
 walk not that big distance, visit not that much shops and spent not that much money. We try to
 think as real human.
-
 The logic is following: we start from our Home, than we calculated weights for graph
 of all shops in specific way: distance multiplied by avarage price of that store. In reality
 there are cheapest stores, and more expensive one, so if some shops is more far away than another
@@ -273,7 +272,6 @@ is not that far from us). After choosing first closest store we add all items wh
 to user_pool variable. Then in the while loop we go to the shop with lowest weight until user_pool
 contains all products. Afterwards, we get some amount of shops, and than we choose from this shops
 where it is better to buy each product. Afterwards we apply TSP as in all above cases
-
 '''
 def opt(shops, user_products,user_x,user_y):
 
@@ -386,21 +384,42 @@ def get_coords(shops):
         coords[num] = (shop.x, shop.y)
     return coords
 
-def main_func(choice, shops):
+def main_func(set, choice, x, y):
+    shops = []
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
 
+    for i in shops:
+        i.remove_redundant(user_products)
+        i.average()
+    what_and_where = {}
+    total_price=0
+    total_path=0
+    path=[]
     if choice == 'poor':
+        global routes
         routes = []
-        a, b, total_price, d = poor(shops, user_products, user_x, user_y)
+        a, b, total_price, d = poor(shops, set, x, y)
         total_path = d[0]
         path = d[1]
-        what_and_where={}
+
         for value in b:
             what_and_where[value]=b[value][1]
         coords = get_coords(shops)
 
 
     elif choice == 'rich':
-        what_and_where, all = minimum_shops(shops, user_products, user_x, user_y)
+        global routes2
+        routes2=[]
+        what_and_where, all = minimum_shops(shops, set, x, y)
         total_price=None
         path = all[1]
         total_path = all[0]
@@ -408,21 +427,14 @@ def main_func(choice, shops):
 
 
     elif choice == 'optimal':
+        global routes3
         routes3=[]
-        what_and_where, total_price,all = opt(shops, user_products, user_x, user_y)
+        what_and_where, total_price,all = opt(shops, set, x, y)
         path=all[1]
         total_path = all[0]
         coords = get_coords(shops)
 
-    return (total_path, total_path), path, what_and_where
+    return (total_price, total_path), path, what_and_where
 
+print main_func(user_products,'poor',user_x,user_y)
     #print coords
-
-
-
-
-
-
-
-
-
