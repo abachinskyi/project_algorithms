@@ -26,7 +26,6 @@ def calculate():
         for i in products:
             tmp = i.split('val')[1]
             res_prod.append(prods[int(tmp) - 1])
-        #print res_prod
         c_type = request.form['case']
         x_coord = request.form['coord_x']
         y_coord = request.form['coord_y']
