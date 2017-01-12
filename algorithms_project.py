@@ -38,6 +38,7 @@ def calculate():
         total_price = totals[0]
         total_path = totals[1]
         opt_path = 'Home -> '
+        path=path[1:-1]
         for i in range(len(path)):
             opt_path += str(path[i])
             opt_path += ' -> '
