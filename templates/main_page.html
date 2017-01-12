@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet"  href= "{{ url_for('static',filename='styles.css') }}">
     <meta charset="UTF-8">
     <title>Main page</title>
 </head>
@@ -8,16 +9,58 @@
 <form method="post">
     <p><input type="text" name="coord_x"></p>
     <p><input type="text" name="coord_y"></p>
-    <p><input name="hello" type="checkbox"  value="val1"/> product1 </p>
-    <p><input name="hello" type="checkbox"  value="val2"/> product2 </p>
-    <p><input name="hello" type="checkbox"  value="val3"/> product3 </p>
-    <p><input name="hello" type="checkbox"  value="val4"/> product4 </p>
-    <p><input name="hello" type="checkbox"  value="val5"/> product5 </p>
-    <p><input name="hello" type="checkbox"  value="val6"/> product6 </p>
-    <p><input name="hello" type="checkbox"  value="val7"/> product7 </p>
-    <p><input name="hello" type="checkbox"  value="val8"/> product8 </p>
-    <p><input name="hello" type="checkbox"  value="val9"/> product9 </p>
-    <p><input name="hello" type="checkbox"  value="val10"/> product10 </p>
+    <div name="choice">
+        <p>
+            <input name="input" type="checkbox"  value="val1"/> product1
+            <input name="input" type="checkbox"  value="val2"/> product2
+            <input name="input" type="checkbox"  value="val3"/> product3
+            <input name="input" type="checkbox"  value="val4"/> product4
+            <input name="input" type="checkbox"  value="val5"/> product5
+        </p>
+        <p>
+            <input name="input" type="checkbox"  value="val6"/> product6
+            <input name="input" type="checkbox"  value="val7"/> product7
+            <input name="input" type="checkbox"  value="val8"/> product8
+            <input name="input" type="checkbox"  value="val9"/> product9
+            <input name="input" type="checkbox"  value="val10"/> product10
+        </p>
+        <p>
+            <input name="input" type="checkbox"  value="val11"/> product1
+            <input name="input" type="checkbox"  value="val12"/> product2
+            <input name="input" type="checkbox"  value="val13"/> product3
+            <input name="input" type="checkbox"  value="val14"/> product4
+            <input name="input" type="checkbox"  value="val15"/> product5
+        </p>
+        <p>
+            <input name="input" type="checkbox"  value="val16"/> product
+            <input name="input" type="checkbox"  value="val17"/> product2
+            <input name="input" type="checkbox"  value="val18"/> product3
+            <input name="input" type="checkbox"  value="val19"/> product4
+            <input name="input" type="checkbox"  value="val20"/> product5
+        </p>
+        <p>
+            <input name="input" type="checkbox"  value="val21"/> product1
+            <input name="input" type="checkbox"  value="val22"/> product2
+            <input name="input" type="checkbox"  value="val23"/> product3
+            <input name="input" type="checkbox"  value="val24"/> product4
+            <input name="input" type="checkbox"  value="val25"/> product5
+        </p>
+        <p>
+            <input name="input" type="checkbox"  value="val21"/> product1
+            <input name="input" type="checkbox"  value="val22"/> product2
+            <input name="input" type="checkbox"  value="val23"/> product3
+            <input name="input" type="checkbox"  value="val24"/> product4
+            <input name="input" type="checkbox"  value="val25"/> product5
+        </p>
+        <p>
+            <input name="input" type="checkbox"  value="val21"/> product1
+            <input name="input" type="checkbox"  value="val22"/> product2
+            <input name="input" type="checkbox"  value="val23"/> product3
+            <input name="input" type="checkbox"  value="val24"/> product4
+            <input name="input" type="checkbox"  value="val25"/> product5
+        </p>
+
+    </div>
 <select name="case">
       <option value="default" disabled="disabled" selected="selected"></option>
       <option value="poor">poor</option>

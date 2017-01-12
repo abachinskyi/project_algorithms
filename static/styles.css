@@ -1,0 +1,11 @@
+html>body .soft_grey{
+	height: auto;
+}
+
+   .soft_grey{
+   	margin-top:0;
+   	padding:0;
+   	background: center center scroll #D1D1D1 ;
+   	height: 100%;
+   	min-height: 100%;
+   	}
