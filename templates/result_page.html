@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>Total price : {{ price }}</div>
+<div>Distance : {{ dist }}</div>
+<div>Optimal path : {{ opt_path }}</div>
+{% for shop in shops %}
+    <h3>{{ shop.name }}</h3>
+    <ul>
+    {% for product in shop.products %}
+        <li>{{ product }}</li>
+    {% endfor %}
+    </ul>
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test file</title>
+</head>
+<body>
+<ul>
+{% for item in seq %}
+    <li>{{ item }}</li>
+{% endfor %}
+</ul>
+
+<form method="post">
+<input type="submit" name="submit" value="Do Something">
+<input type="submit" name="submit" value="Do Something Else">
+</form>
+</body>
+</html>
