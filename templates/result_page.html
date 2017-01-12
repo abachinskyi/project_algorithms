@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--<link rel="stylesheet"  href= "{{ url_for('static',filename='styles2.css') }}">-->
-    <link rel="stylesheet"  href= "/Users/apple/PycharmProjects/project_algorithms/static/styles2.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <!--<link rel="stylesheet"  href= "{{ url_for('static',filename='style.css') }}" -->
+    <!--<link rel="stylesheet"  href= "/Users/apple/PycharmProjects/project_algorithms/static/style.css">-->
+
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -14,7 +16,7 @@
 </div>
 <div class="results">
 {% for shop in shops %}
-    <h3>{{ shop.name }}</h3>
+    <p>{{ shop.name }}</p>
     <ul>
     {% for product in shop.products %}
         <li>{{ product }}</li>
