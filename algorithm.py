@@ -386,10 +386,9 @@ def get_coords(shops):
         coords[num] = (shop.x, shop.y)
     return coords
 
-if __name__ == "__main__":
-    choice=1
+def main_func(choice, shops):
 
-    if choice==1:
+    if choice == 'poor':
         routes = []
         a, b, total_price, d = poor(shops, user_products, user_x, user_y)
         total_path = d[0]
@@ -400,7 +399,7 @@ if __name__ == "__main__":
         coords = get_coords(shops)
 
 
-    elif choice==2:
+    elif choice == 'rich':
         what_and_where, all = minimum_shops(shops, user_products, user_x, user_y)
         total_price=None
         path = all[1]
@@ -408,18 +407,16 @@ if __name__ == "__main__":
         coords = get_coords(shops)
 
 
-    else:
+    elif choice == 'optimal':
         routes3=[]
         what_and_where, total_price,all = opt(shops, user_products, user_x, user_y)
         path=all[1]
         total_path = all[0]
         coords = get_coords(shops)
 
-    print total_price
-    print total_path
-    print path
-    print what_and_where
-    print coords
+    return (total_path, total_path), path, what_and_where
+
+    #print coords
 
 
 
