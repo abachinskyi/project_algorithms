@@ -21,9 +21,10 @@ user_y = 50
 
 
 #fix random
-#seed(105)
 
-
+global num_seed
+num_seed=100
+seed(num_seed)
 '''
 In class Items we store list of all products, on user side this list of products should be displayed
 and user chooses products to user_products from this list
@@ -148,7 +149,6 @@ def poor(shops, user_products, user_x, user_y):
     in following form: shop, its coordinates and product bought there
     '''
     output={}
-
     total_price =0
     for item in pool:
         total_price=total_price+shops[pool[item][0]].products[item]
@@ -385,56 +385,61 @@ def get_coords(shops):
     return coords
 
 def main_func(set, choice, x, y):
-    shops = []
-    shops.append(Shop(25))
-    shops.append(Shop(25))
-    shops.append(Shop(25))
-    shops.append(Shop(25))
-    shops.append(Shop(25))
-    shops.append(Shop(25))
-    shops.append(Shop(25))
-    shops.append(Shop(25))
-    shops.append(Shop(25))
-    shops.append(Shop(25))
+    bad=True
+    while(bad):
+        try:
+            shops = []
+            shops.append(Shop(25))
+            shops.append(Shop(25))
+            shops.append(Shop(25))
+            shops.append(Shop(25))
+            shops.append(Shop(25))
+            shops.append(Shop(25))
+            shops.append(Shop(25))
+            shops.append(Shop(25))
+            shops.append(Shop(25))
+            shops.append(Shop(25))
 
-    for i in shops:
-        i.remove_redundant(user_products)
-        i.average()
-    what_and_where = {}
-    total_price=0
-    total_path=0
-    path=[]
-    if choice == 'poor':
-        global routes
-        routes = []
-        a, b, total_price, d = poor(shops, set, x, y)
-        total_path = d[0]
-        path = d[1]
+            for i in shops:
+                i.remove_redundant(set)
+                i.average()
+            what_and_where = {}
+            total_price=0
+            total_path=0
+            path=[]
+            if choice == 'poor':
+                global routes
+                routes = []
+                a, b, total_price, d = poor(shops, set, x, y)
+                total_path = d[0]
+                path = d[1]
 
-        for value in b:
-            what_and_where[value]=b[value][1]
-        coords = get_coords(shops)
-
-
-    elif choice == 'rich':
-        global routes2
-        routes2=[]
-        what_and_where, all = minimum_shops(shops, set, x, y)
-        total_price=None
-        path = all[1]
-        total_path = all[0]
-        coords = get_coords(shops)
+                for value in b:
+                    what_and_where[value]=b[value][1]
+                coords = get_coords(shops)
 
 
-    elif choice == 'optimal':
-        global routes3
-        routes3=[]
-        what_and_where, total_price,all = opt(shops, set, x, y)
-        path=all[1]
-        total_path = all[0]
-        coords = get_coords(shops)
+            elif choice == 'rich':
+                global routes2
+                routes2=[]
+                what_and_where, all = minimum_shops(shops, set, x, y)
+                total_price=None
+                path = all[1]
+                total_path = all[0]
+                coords = get_coords(shops)
 
-    return (total_price, total_path), path, what_and_where
 
-print main_func(user_products,'poor',user_x,user_y)
+            elif choice == 'optimal':
+                global routes3
+                routes3=[]
+                what_and_where, total_price,all = opt(shops, set, x, y)
+                path=all[1]
+                total_path = all[0]
+                coords = get_coords(shops)
+
+            return (total_price, total_path), path, what_and_where
+        except:
+            num_seed=num_seed+1
+            seed(num_seed)
+            pass
     #print coords
