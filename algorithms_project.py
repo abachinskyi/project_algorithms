@@ -11,20 +11,31 @@ import jinja2
 import os
 
 app = Flask(__name__)
-
+prods=['apple','banana','carrot','garlic','lemon','mushroom','orange','pea','peanut','pepper',
+          'pineapple', 'strawberry', 'potato', 'tomato', 'watermelon','juice','bacon','beans',
+          'beer', 'bread', 'cheese', 'chicken', 'coffee','corn','eggs', 'fish','ham','honey',
+          'ketchup', 'milk', 'pasta','wine', 'vodka','yogurt','cream', 'onion','salmon','tea',
+          'cabbage','rice','butter','sausage','beef','strawberry','cucumber', 'water','sugar',
+          'salt','flour','pork']
 @app.route('/calculate',methods=['GET','POST'])
 def calculate():
     if request.method =='POST':
         print(request.form.getlist('input'))
         products = request.form.getlist('input')
+        res_prod = []
+        for i in products:
+            tmp = i.split('val')[1]
+            res_prod.append(prods[int(tmp) - 1])
+        #print res_prod
         c_type = request.form['case']
         x_coord = request.form['coord_x']
         y_coord = request.form['coord_y']
         print x_coord
         print y_coord
         print c_type
+        print res_prod
         #make processing
-        totals, path, what_and_where = main_func(c_type, products, x_coord, y_coord)
+        totals, path, what_and_where = main_func(res_prod, c_type, x_coord, y_coord)
         total_price = totals[0]
         total_path = totals[1]
         opt_path = 'Home -> '
