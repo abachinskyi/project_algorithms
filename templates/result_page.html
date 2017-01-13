@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/styles2.css">
     <!--<link rel="stylesheet"  href= "{{ url_for('static',filename='style.css') }}" -->
     <!--<link rel="stylesheet"  href= "/Users/apple/PycharmProjects/project_algorithms/static/style.css">-->
 
@@ -13,10 +13,11 @@
     <div>Total price : {{ price }}</div>
     <div>Distance : {{ dist }}</div>
     <div>Optimal path : {{ opt_path }}</div>
+
 </div>
 <div class="results">
 {% for shop in shops %}
-    <p>{{ shop.name }}</p>
+    <p>{{ shop.name }}: ({{shop.x}},{{shop.y}})</p>
     <ul>
     {% for product in shop.products %}
         <li>{{ product }}</li>
