@@ -34,7 +34,7 @@ def calculate():
         print c_type
         print res_prod
         #make processing
-        totals, path, what_and_where = main_func(res_prod, c_type, x_coord, y_coord)
+        totals, path, what_and_where,coords = main_func(res_prod, c_type, x_coord, y_coord)
         total_price = totals[0]
         total_path = totals[1]
         opt_path = 'Home -> '
@@ -44,8 +44,10 @@ def calculate():
             opt_path += ' -> '
         opt_path += 'Home'
         shops = []
+        print 'WHAT', what_and_where.keys()
         for i in what_and_where.keys():
-            shops.append(Products_shops(str(i), what_and_where[i]))
+            shops.append(Products_shops(str(i), what_and_where[i], coords[i][0],coords[i][1]))
+        print 'SHOPS', shops
         return render_template('result_page.html', price=total_price, dist=total_path, opt_path=opt_path, shops=shops)
     return render_template('main_page.html')
 
