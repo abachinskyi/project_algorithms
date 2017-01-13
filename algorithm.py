@@ -7,7 +7,12 @@ import operator
 '''
 Here in user_products should be list of products chosen by user!!!!
 '''
-user_products = ['apple','vodka','pasta','chicken','salt','ketchup','juice','bread','rice','sausage']
+user_products1 = ['apple','vodka','pasta','chicken','salt','ketchup','juice','bread','rice','sausage']
+user_products2 = ['apple','vodka','pasta','chicken','salt','ketchup','juice']
+user_products3= ['apple','banana','carrot','garlic','lemon','mushroom','orange','pea','peanut','pepper',
+          'pineapple', 'strawberry', 'potato', 'tomato', 'watermelon','juice','bacon','beans',
+          'beer']
+
 
 '''
 Here in user_x, user_y should be coordinates of user house as integers from 0 to 100:
@@ -22,9 +27,7 @@ user_y = 50
 
 #fix random
 
-global num_seed
-num_seed=100
-seed(num_seed)
+
 '''
 In class Items we store list of all products, on user side this list of products should be displayed
 and user chooses products to user_products from this list
@@ -93,9 +96,7 @@ shops.append(Shop(25))
 shops.append(Shop(25))
 shops.append(Shop(25))
 shops.append(Shop(25))
-
 #list of products in the shop, which are present in user_products list as well as average prices
-
 for i in shops:
     i.remove_redundant(user_products)
     i.average()
@@ -313,7 +314,7 @@ def opt(shops, user_products,user_x,user_y):
     to_traverse.remove(city_to_go)
     #print to_traverse
     visited.append(city_to_go)
-    while len(user_pool)<10:
+    while len(user_pool)<len(user_products):
         sub={}
         for item in to_traverse:
             sub[item] = round(distance([shops[item].x,shops[item].y], [shops[visited[-1]].x,shops[visited[-1]].y])*shops[item].average_price,2)
@@ -331,15 +332,21 @@ def opt(shops, user_products,user_x,user_y):
         shop_products[item]=shops[item].new_products
     #print shop_products
     where_can_buy = dict((el, []) for el in user_products)
+
     bought = dict((el,[]) for el in visited)
     #print 'b', bought
     #print where_can_buy
+    print 'PRODUCTS', user_products
+    for shop in shops:
+        print 'hi',shop.new_products
     for key in where_can_buy:
         for item in visited:
             if key in shops[item].new_products.keys():
                 where_can_buy[key].append(item)
     #print where_can_buy
     #print 'shalom', shop_products[1]['vodka']
+    print 'WHERE', where_can_buy
+
     def choose_min(product):
         stores = where_can_buy[product]
         min = 999
@@ -350,6 +357,7 @@ def opt(shops, user_products,user_x,user_y):
                 shop = store
         return min, shop
     total_paid=0
+
     for item in user_products:
         price, store = choose_min(item)
         total_paid=total_paid+price
@@ -385,61 +393,55 @@ def get_coords(shops):
     return coords
 
 def main_func(set, choice, x, y):
-    bad=True
-    while(bad):
-        try:
-            shops = []
-            shops.append(Shop(25))
-            shops.append(Shop(25))
-            shops.append(Shop(25))
-            shops.append(Shop(25))
-            shops.append(Shop(25))
-            shops.append(Shop(25))
-            shops.append(Shop(25))
-            shops.append(Shop(25))
-            shops.append(Shop(25))
-            shops.append(Shop(25))
+    num_seed = 120
+    seed(num_seed)
+    shops = []
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
+    shops.append(Shop(25))
 
-            for i in shops:
-                i.remove_redundant(set)
-                i.average()
-            what_and_where = {}
-            total_price=0
-            total_path=0
-            path=[]
-            if choice == 'poor':
-                global routes
-                routes = []
-                a, b, total_price, d = poor(shops, set, x, y)
-                total_path = d[0]
-                path = d[1]
+    for i in shops:
+        i.remove_redundant(set)
+        i.average()
+    what_and_where = {}
+    total_price=0
+    total_path=0
+    path=[]
+    if choice == 'poor':
+        global routes
+        routes = []
+        a, b, total_price, d = poor(shops, set, x, y)
+        total_path = d[0]
+        path = d[1]
 
-                for value in b:
-                    what_and_where[value]=b[value][1]
-                coords = get_coords(shops)
-
-
-            elif choice == 'rich':
-                global routes2
-                routes2=[]
-                what_and_where, all = minimum_shops(shops, set, x, y)
-                total_price=None
-                path = all[1]
-                total_path = all[0]
-                coords = get_coords(shops)
+        for value in b:
+            what_and_where[value]=b[value][1]
+        coords = get_coords(shops)
 
 
-            elif choice == 'optimal':
-                global routes3
-                routes3=[]
-                what_and_where, total_price,all = opt(shops, set, x, y)
-                path=all[1]
-                total_path = all[0]
-                coords = get_coords(shops)
+    elif choice == 'rich':
+        global routes2
+        routes2=[]
+        what_and_where, all = minimum_shops(shops, set, x, y)
+        total_price=None
+        path = all[1]
+        total_path = all[0]
+        coords = get_coords(shops)
 
-            return (total_price, total_path), path, what_and_where
-        except:
-            num_seed=num_seed+1
-            seed(num_seed)
-            pass
-    #print coords
+
+    elif choice == 'optimal':
+        global routes3
+        routes3=[]
+        what_and_where, total_price,all = opt(shops, set, x, y)
+        path=all[1]
+        total_path = all[0]
+        coords = get_coords(shops)
+
+    return (total_price, total_path), path, what_and_where, coords
