@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <!--<link rel="stylesheet"  type="text/css" href= "/Users/apple/PycharmProjects/project_algorithms/static/style.css"-->
     <meta charset="UTF-8">
     <title>Main page</title>
@@ -10,6 +10,7 @@
 <form method="post">
 
     <div id="choice">
+        <p> Choose products, which you are willing to buy:</p>
         <p>
             <input name ="input" type ="checkbox" value ="val1"/> apple
             <input name ="input" type ="checkbox" value ="val2"/> banana
@@ -82,10 +83,16 @@
         </p>
     </div>
     <div id="submit">
+        <p> Enter coordinates of your home:</p>
         <p><input type="text" name="coord_x"> X coordinate</p>
         <p><input type="text" name="coord_y"> Y coordinate</p>
+
+        <p>  Select budget.
+            <li>low: minimize spendings</li>
+            <li>high: minimize shops visited</li>
+            <li>optimal: considering prices and distances.</li>
+        </p>
         <p class="budget">
-            Budget
         <select name="case">
       <option value="default" disabled="disabled" selected="selected"></option>
       <option value="poor">low</option>
