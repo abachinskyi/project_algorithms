@@ -157,7 +157,7 @@ def poor(shops, user_products, user_x, user_y):
             output[pool[item][0]][1].append(item)
         else:
             output[pool[item][0]] = ((shops[pool[item][0]].x, shops[pool[item][0]].y), [item])
-
+    print 'OUTPUT',output
     '''
     Here dictionary of distances between shops(+home) is calculated in order to do TSP on graph
     '''
@@ -442,6 +442,17 @@ def main_func(set, choice, x, y):
         what_and_where, total_price,all = opt(shops, set, x, y)
         path=all[1]
         total_path = all[0]
+        a, b, total_price2, d = poor(shops, set, x, y)
+        what_and_where2={}
+        for value in b:
+            what_and_where2[value] = b[value][1]
+        total_path2 = d[0]
+        path2 = d[1]
+        if len(path)>=len(path2):
+            path=path2[:]
+            total_path=float(total_path2)
+            total_price=float(total_price2)
+            what_and_where=dict(what_and_where2)
         coords = get_coords(shops)
 
     return (total_price, total_path), path, what_and_where, coords
